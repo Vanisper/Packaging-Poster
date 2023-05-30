@@ -20,7 +20,18 @@ const change = () => {
 }
 
 onMounted(() => {
+  // 获取页面宽度和高度
+  var width = window.innerWidth;
+  var height = window.innerHeight;
 
+  // 计算宽高比
+  var aspectRatio = width / height;
+  // 判断是否大于1
+  if (aspectRatio > 1) {
+    console.log("当前网页宽高比大于1");
+  } else {
+    alert("请横屏查看！")
+  }
   window.onresize = () => {
     // 获取页面宽度和高度
     var width = window.innerWidth;

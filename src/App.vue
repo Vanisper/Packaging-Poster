@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import BG1 from "./assets/bg1.jpg";
 import BG2 from "./assets/bg2.jpg";
 import BGM from "./assets/bgm.ogg";
@@ -18,6 +18,25 @@ const select = ref(0);
 const change = () => {
   select.value = select.value == bg.value.length - 1 ? 0 : select.value + 1
 }
+
+onMounted(() => {
+
+  window.onresize = () => {
+    // 获取页面宽度和高度
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    // 计算宽高比
+    var aspectRatio = width / height;
+    // 判断是否大于1
+    if (aspectRatio > 1) {
+      console.log("当前网页宽高比大于1");
+    } else {
+      alert("请横屏查看！")
+    }
+  }
+
+})
 
 </script>
 

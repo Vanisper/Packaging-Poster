@@ -52,7 +52,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <audio controls style="position: fixed;bottom: 0;left: 50%;transform: translateX(-50%);">
+  <audio controls style="position: fixed;top: 10px;left: 50%;transform: translateX(-50%);">
     <source :src="BGM" type="audio/ogg">
     Your browser does not support the audio tag.
   </audio>

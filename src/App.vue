@@ -1,30 +1,44 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
+import BG1 from "./assets/bg1.jpg";
+import BG2 from "./assets/bg2.jpg";
+import BGM from "./assets/bgm.ogg";
+
+const bg = ref([
+  {
+    value: BG1,
+    color: "#feee5b"
+  }, {
+    value: BG2,
+    color: "#fe6263"
+  },
+])
+
+const select = ref(0);
+const change = () => {
+  select.value = select.value == bg.value.length - 1 ? 0 : select.value + 1
+}
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <audio controls style="position: fixed;bottom: 0;left: 50%;transform: translateX(-50%);">
+    <source :src="BGM" type="audio/ogg">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <section @click="change" class="main"
+    :style="{ backgroundImage: `url(${bg[select].value})`, backgroundColor: bg[select].color }">
+
+  </section>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
 }
 </style>
